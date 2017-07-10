@@ -1,69 +1,16 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function() {
-  window.addEventListener('message', messagesHandler);
-
-  function messagesHandler(ev) {
-    let newEvent = new Event('messageRecieved');
-    newEvent.data = ev.data;
-    window.dispatchEvent(newEvent);
-  }
-});
+const timeBetweenBeats = 1000;
 
 window.onload = function() {
-  let currentIframe = null;
-
-  let main = document.getElementsByTagName("body")[0];
-  let iframeHome = document.createElement("iframe");
-  iframeHome.style.width = "500px";
-  iframeHome.style.height = "500px";
-
-  let iframeMenu = document.createElement("iframe");
-  iframeMenu.style.width = "500px";
-  iframeMenu.style.height = "500px";
-
-  let iframeGame = document.createElement("iframe");
-  iframeGame.style.width = "500px";
-  iframeGame.style.height = "500px";
-
-  iframeHome.src = "home.html";
-  iframeMenu.src = "songMenu.html";
-  iframeGame.src = "game.html";
-
-  mountIframe(iframeHome);
+  const button_play = document.getElementById("play");
+  button_play.addEventListener("click", play);
 
   const submit_email = document.getElementById("submit-email");
   submit_email.addEventListener("click", validate);
 
-  window.addEventListener("messageRecieved", messageRecievedHandler);
-
-  function messageRecievedHandler(ev) {
-    let iframeDoc = null;
-
-    switch (ev.data.msg) {
-      case "menu":
-        iframeMenu.name = "menu";
-        mountIframe(iframeMenu);
-        break;
-      case "game":
-        iframeGame.name = "game";
-        mountIframe(iframeGame);
-        talkWithChild(event, iframeGame, ev.data.song);
-        break;
-    }
-  }
-
-  function mountIframe(iframe) {
-    if (currentIframe !== iframe) {
-      if (currentIframe === null) {
-        mount(main, iframe);
-      } else {
-        unmount(main, currentIframe);
-        mount(main, iframe);
-      }
-      currentIframe = iframe;
-    }
-  }
+  const song_select = document.getElementById("song-select");
+  song_select.addEventListener("click", select);
 }
 
 function validateEmail(email) {
@@ -77,20 +24,100 @@ function validate(event) {
   if (!validateEmail(email)) {
     document.getElementById("result").innerHTML = email + " is not a valid email";
   } else {
-    talkWithParent("menu");
+    // TODO
   }
   return false;
 }
 
-function mount(root, element) {
-  root.appendChild(element);
+function play() {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("song-menu").style.display = "initial";
 }
 
-function unmount(root, element) {
-  root.removeChild(element);
+function select() {
+  document.getElementById("song-menu").style.display = "none";
+  document.getElementById("game").style.display = "initial";
+  songStart();
 }
 
-function talkWithChild(event, window_to, song) {
-  console.log("Talking with Child");
-  window_to.contentWindow.postMessage(song, '*');
+function songStart() {
+  let i = 3;
+
+  // In each beat, an image and a counter appears in the screen
+  let interval = setInterval(function(){
+    const touch = document.getElementById("touch");
+    const counter = document.getElementById("counter");
+
+    displayImageAndCounter(touch, counter, i);
+    i -= 1;
+    if (i < 0) {
+      counter.innerHTML = "";
+      clearInterval(interval);
+      let futureTime = new Date().getTime() + timeBetweenBeats;
+      gameStart(futureTime);
+    }
+
+  }, timeBetweenBeats);
+}
+
+function displayImageAndCounter(touch, counter, i) {
+  counter.innerHTML = i;
+  /*
+  setTimeout(function() {
+    image.style.display = "none";
+  }, 100);*/
+}
+
+function gameStart(futureTime) {
+  const touch = document.getElementById("touch");
+  let numberOfClicks = 0;
+  let scoresArray = [];
+
+  touch.addEventListener("click", function() {
+    numberOfClicks = rhythmClick(futureTime, numberOfClicks, scoresArray);
+  }, false);
+}
+
+function rhythmClick(futureTime, numberOfClicks, scoresArray) {
+  numberOfClicks += 1;
+
+  // Score is the difference in 'tenths' of seconds
+  const score = Math.abs(futureTime - new Date().getTime());
+  let text = "";
+  let tempTime = timeBetweenBeats / 10;
+
+  if (score < tempTime) {
+    text = "Perfect";
+  }
+  else if (score >= tempTime && score < (tempTime * 2)) {
+    text = "Great";
+  }
+  else if (score >= (tempTime * 2) && score < (tempTime * 3)) {
+    text = "Good";
+  }
+  else if (score >= (tempTime * 3) && score < (tempTime * 4)) {
+    text = "Okay"
+  }
+  else {
+    text = "Bad";
+  }
+
+  // Stores the time that the next rhythm should have
+  futureTime = new Date().getTime() + timeBetweenBeats;
+  scoresArray.push(score);
+
+  // Displays level of success to the user for a short time
+  setTimeout(function() {
+    document.getElementById("level-of-success").innerHTML = text;
+  }, 100);
+
+  if (numberOfClicks == 3) {
+    const final_score = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
+    document.getElementById("game").style.display = "none";
+    document.getElementById("results").style.display = "initial";
+    document.getElementById("score").innerHTML = final_score;
+    return;
+  }
+
+  return numberOfClicks;
 }

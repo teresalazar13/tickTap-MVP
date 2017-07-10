@@ -6,17 +6,60 @@
     <link rel="stylesheet" href="styles/styles.css">
     <script type="text/javascript" src="scripts/index.js"></script>
   </head>
+
   <body>
     <h1>TickTap</h1>
     <h2>A game to test how good you are with your rhythm</h2>
     <h3>COMING SOON FOR ANDROID & IOS</h3>
-  </body>
-  <footer>
+
+    <hr>
+
+    <div id="home">
+      <h1>tickTap</h1>
+      <h2>Demo version</h2>
+      <button id="play">Play</button>
+    </div>
+
+    <div id="song-menu" style="display:none">
+      <h3>Please select a song</h3>
+      <ul>
+        <li><button class="song" id="song-select">60click.mp3</button></li>
+      </ul>
+    </div>
+
+    <div id="game" style="display:none">
+
+      <audio autoplay>
+        <source src="resources/60click.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+
+      <p id="current-song"></p>
+      <p>Listen and touch the screen</p>
+      <p>according to the rhythm</p>
+      <div type="button" name="button" id="touch">
+        <p id="counter"></p>
+      </div>
+      <p id="level-of-success"></p>
+      <p id="array-of-scores"></p>
+    </div>
+
+    <div id="results" style="display:none">
+      <p>Great</p>
+      <p>You scored</p>
+      <p id="score"></p>
+      <p>Restart demo</p>
+    </div>
+
+    <hr>
+
     <form>
       <p>Interested? Submit your email to be the first to play tickTap</p>
       <input id="email">
       <button id="submit-email">Submit</button>
     </form>
     <h2 id="result"></h2>
-  </footer>
+
+  </body>
+
 </html>
