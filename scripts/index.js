@@ -85,7 +85,9 @@ function gameStart(timeBetweenBeats, futureTime) {
     }, 100);
 
     if (numberOfClicks == 3) {
-      showResults(scoresArray);
+      const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
+      const scorePercentage = (1 - (averageScore/timeBetweenBeats)) * 100
+      showResults(scorePercentage);
       return;
     }
 
@@ -97,7 +99,7 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   const score = Math.abs(futureTime - new Date().getTime());
 
   let text = "";
-  let tempTime = timeBetweenBeats / 10;
+  const tempTime = timeBetweenBeats / 10;
 
   if (score < tempTime) {
     text = "Perfect";
@@ -121,7 +123,7 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   return [numberOfClicks, futureTime, scoresArray, text];
 }
 
-function showResults(scoresArray) {
+function showResults(finalScore) {
   setTimeout(function() {
     document.getElementById("game").style.display = "none";
     document.getElementById("calculating-results").style.display = "initial";
@@ -129,8 +131,7 @@ function showResults(scoresArray) {
 
   setTimeout(function() {
     document.getElementById("calculating-results").style.display = "none";
-    const finalScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
     document.getElementById("results").style.display = "initial";
-    document.getElementById("score").innerHTML = finalScore;
+    document.getElementById("score").innerHTML = finalScore + "%";
   }, 2000);
 }
