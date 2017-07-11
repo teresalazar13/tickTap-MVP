@@ -1,7 +1,5 @@
 "use strict";
 
-const timeBetweenBeats = 1000;
-
 window.onload = function() {
   const buttonPlay = document.getElementById("play");
   buttonPlay.addEventListener("click", play);
@@ -27,7 +25,7 @@ function validate(event) {
   if (!validateEmail(email)) {
     document.getElementById("result").innerHTML = email + " is not a valid email";
   } else {
-    // TODO
+    // TODO -> store emails
   }
   return false;
 }
@@ -41,7 +39,7 @@ function select(event) {
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "initial";
   document.getElementById(event.target.innerHTML).play();
-  songStart();
+  songStart(parseInt(event.target.value));  // event.target.value has timeBetweenBeats
 }
 
 function restartDemo(event) {
@@ -49,7 +47,7 @@ function restartDemo(event) {
   document.getElementById("home").style.display = "initial";
 }
 
-function songStart() {
+function songStart(timeBetweenBeats) {
   let i = 3;
 
   // In each beat, an image and a counter appears in the screen
@@ -67,19 +65,19 @@ function songStart() {
       counter.innerHTML = "";
       document.getElementById("explain").style.display = "none";
       document.getElementById("keep").style.display = "initial";
-      gameStart(futureTime);
+      gameStart(timeBetweenBeats, futureTime);
     }
   }, timeBetweenBeats);
 }
 
-function gameStart(futureTime) {
+function gameStart(timeBetweenBeats, futureTime) {
   const touch = document.getElementById("touch");
   let numberOfClicks = 0;
   let scoresArray = [];
   let text = "";
 
   touch.addEventListener("click", function() {
-    [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(numberOfClicks, futureTime, scoresArray);
+    [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
 
     // Displays level of success to the user for a short time
     setTimeout(function() {
@@ -87,18 +85,14 @@ function gameStart(futureTime) {
     }, 100);
 
     if (numberOfClicks == 3) {
-      // TODO - Wait some time before showing results
-      const finalScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
-      document.getElementById("game").style.display = "none";
-      document.getElementById("results").style.display = "initial";
-      document.getElementById("score").innerHTML = finalScore;
+      showResults(scoresArray);
       return;
     }
 
   }, false);
 }
 
-function rhythmClick(numberOfClicks, futureTime, scoresArray) {
+function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) {
   // Score is the difference in 'tenths' of seconds
   const score = Math.abs(futureTime - new Date().getTime());
 
@@ -120,10 +114,23 @@ function rhythmClick(numberOfClicks, futureTime, scoresArray) {
   else {
     text = "Bad";
   }
-  console.log(text);
 
   numberOfClicks += 1;
   scoresArray.push(score);
   futureTime = new Date().getTime() + timeBetweenBeats;
   return [numberOfClicks, futureTime, scoresArray, text];
+}
+
+function showResults(scoresArray) {
+  setTimeout(function() {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("calculating-results").style.display = "initial";
+  }, 1000);
+
+  setTimeout(function() {
+    document.getElementById("calculating-results").style.display = "none";
+    const finalScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
+    document.getElementById("results").style.display = "initial";
+    document.getElementById("score").innerHTML = finalScore;
+  }, 2000);
 }
