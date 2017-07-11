@@ -7,8 +7,10 @@ window.onload = function() {
   const submitEmail = document.getElementById("submit-email");
   submitEmail.addEventListener("click", validate);
 
-  const songSelect = document.getElementById("song-select");
-  songSelect.addEventListener("click", select);
+  const songSelect = document.getElementsByClassName("song-select");
+  for (let i = 0; i < songSelect.length; i++) {
+    songSelect[i].addEventListener("click", select);
+  }
 
   const restart = document.getElementById("restart");
   restart.addEventListener("click", restartDemo);
@@ -39,6 +41,7 @@ function select(event) {
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "initial";
   document.getElementById(event.target.innerHTML).play();
+  console.log(event.target.innerHTML);
   songStart(parseInt(event.target.value));  // event.target.value has timeBetweenBeats
 }
 
@@ -86,7 +89,10 @@ function gameStart(timeBetweenBeats, futureTime) {
 
     if (numberOfClicks == 3) {
       const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
-      const scorePercentage = (1 - (averageScore/timeBetweenBeats)) * 100
+      let scorePercentage = (1 - (averageScore/timeBetweenBeats)) * 100;
+      if (scorePercentage < 0) {
+        scorePercentage = 0;
+      }
       showResults(scorePercentage);
       return;
     }
