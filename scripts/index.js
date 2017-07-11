@@ -3,14 +3,17 @@
 const timeBetweenBeats = 1000;
 
 window.onload = function() {
-  const button_play = document.getElementById("play");
-  button_play.addEventListener("click", play);
+  const buttonPlay = document.getElementById("play");
+  buttonPlay.addEventListener("click", play);
 
-  const submit_email = document.getElementById("submit-email");
-  submit_email.addEventListener("click", validate);
+  const submitEmail = document.getElementById("submit-email");
+  submitEmail.addEventListener("click", validate);
 
-  const song_select = document.getElementById("song-select");
-  song_select.addEventListener("click", select);
+  const songSelect = document.getElementById("song-select");
+  songSelect.addEventListener("click", select);
+
+  const restart = document.getElementById("restart");
+  restart.addEventListener("click", restartDemo);
 }
 
 function validateEmail(email) {
@@ -29,15 +32,21 @@ function validate(event) {
   return false;
 }
 
-function play() {
+function play(event) {
   document.getElementById("home").style.display = "none";
   document.getElementById("song-menu").style.display = "initial";
 }
 
-function select() {
+function select(event) {
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "initial";
+  document.getElementById(event.target.innerHTML).play();
   songStart();
+}
+
+function restartDemo(event) {
+  document.getElementById("results").style.display = "none";
+  document.getElementById("home").style.display = "initial";
 }
 
 function songStart() {
@@ -45,44 +54,54 @@ function songStart() {
 
   // In each beat, an image and a counter appears in the screen
   let interval = setInterval(function(){
+
     const touch = document.getElementById("touch");
     const counter = document.getElementById("counter");
 
-    displayImageAndCounter(touch, counter, i);
+    counter.innerHTML = i;
     i -= 1;
-    if (i < 0) {
-      counter.innerHTML = "";
+
+    if (i === -1) {
+      let futureTime = new Date().getTime();
       clearInterval(interval);
-      let futureTime = new Date().getTime() + timeBetweenBeats;
+      counter.innerHTML = "";
+      document.getElementById("explain").style.display = "none";
+      document.getElementById("keep").style.display = "initial";
       gameStart(futureTime);
     }
-
   }, timeBetweenBeats);
-}
-
-function displayImageAndCounter(touch, counter, i) {
-  counter.innerHTML = i;
-  /*
-  setTimeout(function() {
-    image.style.display = "none";
-  }, 100);*/
 }
 
 function gameStart(futureTime) {
   const touch = document.getElementById("touch");
   let numberOfClicks = 0;
   let scoresArray = [];
+  let text = "";
 
   touch.addEventListener("click", function() {
-    numberOfClicks = rhythmClick(futureTime, numberOfClicks, scoresArray);
+    [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(numberOfClicks, futureTime, scoresArray);
+
+    // Displays level of success to the user for a short time
+    setTimeout(function() {
+      document.getElementById("level-of-success").innerHTML = text;
+    }, 100);
+
+    if (numberOfClicks == 3) {
+      // TODO - Wait some time before showing results
+      const finalScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
+      document.getElementById("game").style.display = "none";
+      document.getElementById("results").style.display = "initial";
+      document.getElementById("score").innerHTML = finalScore;
+      return;
+    }
+
   }, false);
 }
 
-function rhythmClick(futureTime, numberOfClicks, scoresArray) {
-  numberOfClicks += 1;
-
+function rhythmClick(numberOfClicks, futureTime, scoresArray) {
   // Score is the difference in 'tenths' of seconds
   const score = Math.abs(futureTime - new Date().getTime());
+
   let text = "";
   let tempTime = timeBetweenBeats / 10;
 
@@ -101,23 +120,10 @@ function rhythmClick(futureTime, numberOfClicks, scoresArray) {
   else {
     text = "Bad";
   }
+  console.log(text);
 
-  // Stores the time that the next rhythm should have
-  futureTime = new Date().getTime() + timeBetweenBeats;
+  numberOfClicks += 1;
   scoresArray.push(score);
-
-  // Displays level of success to the user for a short time
-  setTimeout(function() {
-    document.getElementById("level-of-success").innerHTML = text;
-  }, 100);
-
-  if (numberOfClicks == 3) {
-    const final_score = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3);
-    document.getElementById("game").style.display = "none";
-    document.getElementById("results").style.display = "initial";
-    document.getElementById("score").innerHTML = final_score;
-    return;
-  }
-
-  return numberOfClicks;
+  futureTime = new Date().getTime() + timeBetweenBeats;
+  return [numberOfClicks, futureTime, scoresArray, text];
 }

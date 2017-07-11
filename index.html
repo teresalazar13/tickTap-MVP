@@ -23,20 +23,20 @@
     <div id="song-menu" style="display:none">
       <h3>Please select a song</h3>
       <ul>
-        <li><button class="song" id="song-select">60click.mp3</button></li>
+        <li><button class="song" id="song-select">60click</button></li>
       </ul>
     </div>
 
     <div id="game" style="display:none">
 
-      <audio autoplay>
+      <audio id="60click">
         <source src="resources/60click.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
       </audio>
 
       <p id="current-song"></p>
-      <p>Listen and touch the screen</p>
-      <p>according to the rhythm</p>
+      <p id="explain">Listen and touch the screen according to the rhythm</p>
+      <p id="keep" style="display:none">Keep the rhythm</p>
       <div type="button" name="button" id="touch">
         <p id="counter"></p>
       </div>
@@ -45,10 +45,9 @@
     </div>
 
     <div id="results" style="display:none">
-      <p>Great</p>
       <p>You scored</p>
       <p id="score"></p>
-      <p>Restart demo</p>
+      <button id="restart">Restart demo</button>
     </div>
 
     <hr>
