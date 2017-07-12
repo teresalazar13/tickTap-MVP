@@ -36,79 +36,86 @@
   </head>
 
   <body>
-    <h1>tickTap</h1>
-    <h2>A game to test how good you are with your rhythm</h2>
-    <h3>COMING SOON FOR ANDROID & IOS</h3>
-
-    <hr>
-
-    <div id="home">
-      <h1>tickTap</h1>
-      <h2>Demo version</h2>
-      <button id="play">Play</button>
-    </div>
-
-    <div id="song-menu" style="display:none">
-      <h3>Please select a song</h3>
-      <ul>
-        <li><button class="song-select" value="706">RiseAndShine</button></li>
-        <li><button class="song-select" value="1000">60click</button></li>
-        <li><button class="song-select" value="500">120click</button></li>
-      </ul>
-    </div>
-
-    <div id="game" style="display:none">
-
-      <audio id="60click">
-        <source src="resources/60click.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-      </audio>
-
-      <audio id="120click">
-        <source src="resources/120click.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-      </audio>
-
-      <audio id="RiseAndShine">
-        <source src="resources/RiseAndShine.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-      </audio>
-
-      <p id="current-song"></p>
-      <p id="explain">Listen and touch the screen according to the rhythm</p>
-      <p id="keep" style="display:none">Keep the rhythm</p>
-      <div type="button" name="button" id="touch">
-        <p id="counter"></p>
+    <div class="header">
+      <p id="title">tickTap</p>
+      <p id="subtitle">A game to test how good is your rhythm</p>
+      <div class="comming-soon">
+        <p id="header-info">COMING SOON FOR ANDROID & IOS</p>
+        <img class="icon" src="resources/android_icon.svg" alt="">
+        <img class="icon" src="resources/apple_icon.svg" alt="">
       </div>
-      <p id="level-of-success"></p>
-      <p id="array-of-scores"></p>
-    </div>
-
-    <div id="calculating-results" style="display:none">
-      <p>Calculating results...</p>
-    </div>
-
-    <div id="results" style="display:none">
-      <p>Score</p>
-      <p id="score"></p>
-      <button id="restart">Restart demo</button>
     </div>
 
     <hr>
 
-    <link href="http://cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-    <style type="text/css">
-    	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-    </style>
-    <div id="mc_embed_signup">
-    <form action="http://github.us14.list-manage.com/subscribe/post?u=a2f39374353e2c509903f7b5c&amp;id=d5b2fd4052" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-        <div id="mc_embed_signup_scroll">
-    	<label for="mce-EMAIL">Interested? Submit your email to be the first to play tickTap</label>
-    	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a2f39374353e2c509903f7b5c_d5b2fd4052" tabindex="-1" value=""></div>
-        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    <div class="main">
+
+      <div class="phone">
+        <!--<img id="phone-image" src="resources/phone.png" alt="">-->
+
+        <div id="home">
+          <p id="home-title">tickTap</p>
+          <p id="home-subtitle">DEMO VERSION</p>
+          <button id="play">PLAY</button>
         </div>
-    </form>
+
+        <div id="song-menu" style="display:none">
+          <h3>Please select a song</h3>
+          <ul>
+            <li><button class="song-select" value="706">RiseAndShine</button></li>
+            <li><button class="song-select" value="1000">60click</button></li>
+            <li><button class="song-select" value="500">120click</button></li>
+          </ul>
+        </div>
+
+        <div id="game" style="display:none">
+
+          <audio id="60click">
+            <source src="resources/60click.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+
+          <audio id="120click">
+            <source src="resources/120click.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+
+          <audio id="RiseAndShine">
+            <source src="resources/RiseAndShine.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+
+          <p id="current-song"></p>
+          <p id="explain">Listen and touch the screen according to the rhythm</p>
+          <p id="keep" style="display:none">Keep the rhythm</p>
+          <div type="button" name="button" id="touch">
+            <p id="counter"></p>
+          </div>
+          <p id="level-of-success"></p>
+          <p id="array-of-scores"></p>
+        </div>
+
+        <div id="calculating-results" style="display:none">
+          <p>Calculating results...</p>
+        </div>
+
+        <div id="results" style="display:none">
+          <p>Score</p>
+          <p id="score"></p>
+          <button id="restart">Restart demo</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer">
+      <form action="https://github.us14.list-manage.com/subscribe/post?u=a2f39374353e2c509903f7b5c&amp;id=d5b2fd4052" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      	<label for="mce-EMAIL"><p id="footer-description">Interested? Submit your email to be the first to play <b>tickTap</b></p></label>
+      	<input id="email-input" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email" required>
+        <br><input id="submit-email" type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </form>
     </div>
 
     <script type="text/javascript" src="scripts/index.js"></script>

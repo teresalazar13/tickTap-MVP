@@ -1,5 +1,116 @@
+.header {
+  margin-top: 2.5%;
+  margin-bottom: 2%;
+}
+
+#title {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 4em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#subtitle {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 1em;
+  margin-top: 2.5%;
+}
+
+#header-info {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 0.7em;
+  margin-top: 2%;
+}
+
+.comming-soon {
+  text-align:center;
+}
+
+.icon {
+  max-width: 15px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #touch {
   width: 40px;
   height: 40px;
   background-color: green;
+}
+
+.main {
+  background: #00FFA6;
+  height: 390px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.phone {
+  background: white;
+  width: 20%;
+  height: 85%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#phone-image {
+
+  max-width: 90%;
+}
+
+#home-title {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 1em;
+}
+
+#home-subtitle {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 0.5em;
+}
+
+#play {
+  background-color: #00FFA6;
+  outline: 0;
+  border: 0;
+}
+
+.footer {
+  margin-top: 2.8%;
+  text-align: center;
+}
+
+#footer-description {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 0.8em;
+}
+
+#email-input {
+  text-align: center;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #00FFA6;
+  width: 300px;
+}
+
+#submit-email {
+  margin-top: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 20px;
+  border: 0;
+  outline: 0;
+  background-color: #00FFA6;
+  color: white;
+  font-family: Helvetica;
+  font-size: 0.6em;
 }

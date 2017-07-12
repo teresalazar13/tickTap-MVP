@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-30.3213,0)">
+        <g id="Prancheta4" transform="matrix(0.559056,0,0,0.563918,30.3213,117.312)">
+            <rect x="0" y="-208.03" width="42.542" height="42.542" style="fill:none;"/>
+            <g transform="matrix(0.046975,0,0,0.04657,21.2712,-186.759)">
+                <g transform="matrix(1,0,0,1,-373.819,-454.642)">
+                    <g id="g25472" transform="matrix(1,0,0,1,-1054.75,-1619.72)">
+                        <g id="path188" transform="matrix(54.8503,0,0,-54.8503,-1411.31,6454.73)">
+                            <clipPath id="_clip1">
+                                <rect x="45.315" y="71.927" width="12.92" height="15.867"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip1)">
+                                <path d="M56.105,79.364C56.087,81.372 57.745,82.336 57.82,82.383C56.887,83.748 55.435,83.935 54.917,83.957C53.682,84.082 52.506,83.23 51.88,83.23C51.254,83.23 50.286,83.939 49.262,83.919C47.914,83.899 46.673,83.136 45.979,81.93C44.58,79.503 45.622,75.906 46.984,73.936C47.651,72.973 48.445,71.888 49.489,71.928C50.495,71.968 50.875,72.578 52.089,72.578C53.303,72.578 53.645,71.928 54.708,71.947C55.789,71.968 56.475,72.931 57.137,73.897C57.901,75.015 58.217,76.097 58.235,76.154C58.211,76.164 56.127,76.963 56.105,79.364" style="fill-rule:nonzero;"/>
+                            </g>
+                        </g>
+                        <path id="path190" d="M1556.51,1778.21C1586.89,1741.4 1607.41,1690.23 1601.76,1639.22C1557.99,1640.98 1505,1668.4 1473.57,1705.2C1445.44,1737.73 1420.75,1789.84 1427.44,1839.81C1476.26,1843.59 1526.12,1814.96 1556.51,1778.21" style="fill-rule:nonzero;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
