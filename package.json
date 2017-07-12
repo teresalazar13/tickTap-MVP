@@ -1,0 +1,27 @@
+{
+  "name": "mvp-ticktap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "dependencies": {
+    "connect": "^3.6.2",
+    "dotenv": "^4.0.0",
+    "finalhandler": "^1.0.3",
+    "serve-static": "^1.12.3",
+    "universal-analytics": "^0.4.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teresalazar13/tickTap-MVP.git"
+  },
+  "author": "Whitesmith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teresalazar13/tickTap-MVP/issues"
+  },
+  "homepage": "https://github.com/teresalazar13/tickTap-MVP#readme"
+}
