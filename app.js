@@ -7,3 +7,4 @@ connect().use(serveStatic(__dirname)).listen(process.env.PORT || 8080, function(
 require('dotenv').config();
 var ua = require('universal-analytics');
 var visitor = ua(process.env.CONTROL_ID);
+visitor.pageview("/").send();
