@@ -80,6 +80,7 @@ header {
   height: 534px;
   text-align: center;
   margin: 0 auto;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.4);
 }
 
 .phone__frame {
@@ -90,6 +91,21 @@ header {
   left: -23px;
   width: calc(100% + 46px);
 }
+
+@media (max-width:450px) { 
+  .main{
+    padding: 80px 0 90px 0;
+  }
+
+  .phone{
+    width: 100%;
+  }
+
+  .phone__frame {
+    display: none;
+  }
+}
+
 
 #home-title {
   text-align: center;
@@ -123,6 +139,13 @@ header {
   background: transparent;
   border-bottom: 2px solid #00FFA6;
   width: 350px;
+  
+}
+
+@media (max-width:450px) { 
+  .cta-form__input {
+    width: 90%;
+  }
 }
 
 .cta-form__input::placeholder{
@@ -147,4 +170,16 @@ header {
 
 .cta-form__submit:hover {
   background-color: black;
+}
+
+.footer__text{
+  color: #888;
+  text-transform: uppercase;
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  font-size: 0.7em;
+}
+
+.footer__text a{
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  color: inherit;
 }
