@@ -21,8 +21,8 @@ function play(event) {
 function select(event) {
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "initial";
-  document.getElementById(event.target.innerHTML).play();
-  songStart(parseInt(event.target.value), event.target.innerHTML);
+  document.getElementById(event.target.innerHTML.replace(/ /g,'')).play();
+  songStart(parseFloat(event.target.value), event.target.innerHTML.replace(/ /g,''));
 }
 
 function restartDemo(event) {
@@ -31,7 +31,7 @@ function restartDemo(event) {
 }
 
 function songStart(timeBetweenBeats, song) {
-  let i = 8;
+  let i = 12;
   const touch = document.getElementById("touch");
   const counter = document.getElementById("counter");
 
@@ -59,18 +59,19 @@ function gameStart(timeBetweenBeats, futureTime) {
   let scoresArray = [];
   let text = "";
 
-  touch.addEventListener("click", function() {
+  touch.addEventListener("click", function handler() {
     [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
 
-    if (numberOfClicks != 8) {
+    if (numberOfClicks != 12) {
       setTimeout(function() {
         document.getElementById("level-of-success").innerHTML = text;
       }, 100);
     }
 
     else {
+      this.removeEventListener('click', handler);
       const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3) * (1000 / timeBetweenBeats);
-      let finalScore = (timeBetweenBeats - averageScore) * Math.pow(0.9999999, averageScore);
+      let finalScore = (timeBetweenBeats - averageScore);
       if (finalScore < 0) {
         finalScore = 0;
       }
