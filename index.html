@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>tickTap</title>
     <link rel="stylesheet" href="styles/styles.css">
     <!-- Google Analytics -->
@@ -18,22 +20,20 @@
   </head>
 
   <body>
-    <div class="header">
-      <p id="title">tickTap</p>
-      <p id="subtitle">A game to test how good is your rhythm</p>
-      <div class="comming-soon">
-        <p id="header-info">COMING SOON FOR ANDROID & IOS</p>
-        <img class="icon" src="resources/android_icon.svg" alt="">
-        <img class="icon" src="resources/apple_icon.svg" alt="">
+    <header>
+      <p class="title">tickTap</p>
+      <p class="subtitle">An app to test how good is your rhythm</p>
+      <div class="header__details">
+        <p class="subtitle--small">COMING SOON FOR ANDROID &#38; IOS</p>
+        <img class="icon" src="resources/android_icon.svg" alt="Coming soon for Android">
+        <img class="icon" src="resources/apple_icon.svg" alt="Coming soon for iOS">
       </div>
-    </div>
-
-    <hr>
+    </header>
 
     <div class="main">
 
       <div class="phone">
-        <!--<img id="phone-image" src="resources/phone.png" alt="">-->
+        <img class="phone__frame" src="resources/phone.png" alt="">
 
         <div id="home">
           <p id="home-title">tickTap</p>
@@ -104,15 +104,17 @@
 
     </div>
 
-    <hr>
-
-    <div class="footer">
+    <div class="cta-form">
       <form action="https://github.us14.list-manage.com/subscribe/post?u=a2f39374353e2c509903f7b5c&amp;id=d5b2fd4052" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      	<label for="mce-EMAIL"><p id="footer-description">Interested? Submit your email to be the first to play <b>tickTap</b></p></label>
-      	<input id="email-input" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email" required>
-        <br><input id="submit-email" type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button">
+      	<label for="mce-EMAIL"><p class="cta-form__description">Interested? Submit your email to be the first to play <b>tickTap</b></p></label>
+      	<input class="cta-form__input" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email" required>
+        <br><input class="cta-form__submit" type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button">
       </form>
     </div>
+
+    <footer>
+      <p class="footer__text">Made with ♥ by <a href="https://www.whitesmith.co/">Whitesmith</a>
+    </footer>
 
     <script type="text/javascript" src="scripts/index.js"></script>
   </body>

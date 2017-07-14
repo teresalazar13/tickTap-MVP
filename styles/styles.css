@@ -1,36 +1,59 @@
-.header {
-  margin-top: 2.5%;
-  margin-bottom: 2%;
+@font-face{
+  font-family: 'HKGrotesk-Light';
+  src: url('../assets/fonts/HKGrotesk-Light.otf') format('otf');
+  font-weight: lighter;
 }
 
-#title {
+@font-face{
+  font-family: 'HKGrotesk-Regular';
+  src: url('../assets/fonts/HKGrotesk-Regular.otf') format('otf');
+  font-weight: normal;
+}
+
+@font-face{
+  font-family: 'HKGrotesk-SemiBold';
+  src: url('../assets/fonts/HKGrotesk-SemiBold.otf') format('otf');
+  font-weight: bold;
+}
+
+*{
+  font-family: 'HKGrotesk-Regular', sans-serif;
   text-align: center;
-  font-family: Helvetica;
-  font-size: 4em;
+}
+
+body{
+  margin: 0;
+}
+
+header {
+  margin: 100px 20px 190px 20px;
+}
+
+.title {
+  text-align: center;
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  letter-spacing: -0.02em;
+  font-size: 5em;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#subtitle {
-  text-align: center;
-  font-family: Helvetica;
-  font-size: 1em;
-  margin-top: 2.5%;
+.subtitle {
+  font-size: 1.3em;
 }
 
-#header-info {
-  text-align: center;
-  font-family: Helvetica;
-  font-size: 0.7em;
-  margin-top: 2%;
+.subtitle--small {
+  font-size: 0.9em;
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  letter-spacing: 0.05em;
 }
 
-.comming-soon {
-  text-align:center;
+.header__details {
+  margin-top: 100px;
 }
 
 .icon {
-  max-width: 15px;
+  max-width: 20px;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
@@ -44,33 +67,53 @@
 
 .main {
   background: #00FFA6;
-  height: 390px;
+  
   width: 100%;
-  overflow: hidden;
+  
 }
 
 .phone {
+  overflow: visible;
+  position: relative;
   background: white;
-  width: 20%;
-  height: 85%;
+  width: 302px;
+  height: 534px;
   text-align: center;
   margin: 0 auto;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.4);
 }
 
-#phone-image {
-
-  max-width: 90%;
+.phone__frame {
+  pointer-events: none;
+  overflow: visible;
+  position: absolute;
+  top: -90px;
+  left: -23px;
+  width: calc(100% + 46px);
 }
+
+@media (max-width:450px) { 
+  .main{
+    padding: 80px 0 90px 0;
+  }
+
+  .phone{
+    width: 100%;
+  }
+
+  .phone__frame {
+    display: none;
+  }
+}
+
 
 #home-title {
   text-align: center;
-  font-family: Helvetica;
   font-size: 1em;
 }
 
 #home-subtitle {
   text-align: center;
-  font-family: Helvetica;
   font-size: 0.5em;
 }
 
@@ -80,37 +123,63 @@
   border: 0;
 }
 
-.footer {
-  margin-top: 2.8%;
-  text-align: center;
+.cta-form {
+  margin: 190px 20px 100px 20px;
 }
 
-#footer-description {
-  text-align: center;
-  font-family: Helvetica;
-  font-size: 0.8em;
+.cta-form__description {
+  font-size: 1em;
 }
 
-#email-input {
-  text-align: center;
+.cta-form__input {
+  font-size: 1.2em;
+  padding: 10px;
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid #00FFA6;
-  width: 300px;
+  border-bottom: 2px solid #00FFA6;
+  width: 350px;
+  
 }
 
-#submit-email {
-  margin-top: 1%;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
-  padding-left: 1%;
-  padding-right: 1%;
+@media (max-width:450px) { 
+  .cta-form__input {
+    width: 90%;
+  }
+}
+
+.cta-form__input::placeholder{
+  color: #ccc;
+}
+
+.cta-form__submit {
+  cursor: pointer;
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  margin-top: 20px;
+  padding: 10px 20px;
   border-radius: 20px;
   border: 0;
   outline: 0;
   background-color: #00FFA6;
   color: white;
-  font-family: Helvetica;
-  font-size: 0.6em;
+  transition: 0.2s ease;
+}
+
+.cta-form__submit:hover {
+  background-color: black;
+}
+
+.footer__text{
+  color: #888;
+  text-transform: uppercase;
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  font-size: 0.7em;
+}
+
+.footer__text a{
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  color: inherit;
 }
