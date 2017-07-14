@@ -26,7 +26,7 @@ body{
 }
 
 header {
-  margin: 100px 20px;
+  margin: 100px 20px 190px 20px;
 }
 
 .title {
@@ -67,22 +67,28 @@ header {
 
 .main {
   background: #00FFA6;
-  height: 390px;
+  
   width: 100%;
-  overflow: hidden;
+  
 }
 
 .phone {
+  overflow: visible;
+  position: relative;
   background: white;
-  width: 20%;
-  height: 85%;
+  width: 302px;
+  height: 534px;
   text-align: center;
   margin: 0 auto;
 }
 
-#phone-image {
-
-  max-width: 90%;
+.phone__frame {
+  pointer-events: none;
+  overflow: visible;
+  position: absolute;
+  top: -90px;
+  left: -23px;
+  width: calc(100% + 46px);
 }
 
 #home-title {
@@ -102,7 +108,7 @@ header {
 }
 
 .cta-form {
-  margin: 100px 0;
+  margin: 190px 20px 100px 20px;
 }
 
 .cta-form__description {
