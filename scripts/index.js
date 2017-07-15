@@ -36,8 +36,15 @@ function songStart(timeBetweenBeats, song) {
   const counter = document.getElementById("counter");
 
   let interval = setInterval(function(){
-    if (i <= 3 && i >= 1) {
-      counter.innerHTML = i;
+    if (i >= 1) {
+      touch.style.visibility = "hidden";
+      setTimeout(function() {
+        touch.style.visibility = "visible";
+      }, 100);
+
+      if(i < 4) {
+        counter.innerHTML = i;
+      }
     }
     i -= 1;
     if (i === -1) {
