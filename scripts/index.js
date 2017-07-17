@@ -66,11 +66,13 @@ function songStart(timeBetweenBeats, song) {
 
 function gameStart(timeBetweenBeats, futureTime) {
   const touch = document.getElementById("touch");
+  const duration = (timeBetweenBeats/1000).toString() + 's';
+  const maximumNumberOfClicks = 12;
+  let averageScore = 0;
   let numberOfClicks = 0;
   let scoresArray = [];
   let text = "";
   let color = "";
-  const duration = (timeBetweenBeats/1000).toString() + 's';
   document.getElementById("counter").style.fontSize = "1em";
 
   touch.addEventListener("click", function handler() {
@@ -78,7 +80,7 @@ function gameStart(timeBetweenBeats, futureTime) {
     touch.style.transitionDuration = "0s";
     touch.style.transform = "rotate(-45deg) scale(1)";
 
-    if (numberOfClicks != 12) {
+    if (numberOfClicks != maximumNumberOfClicks) {
       setTimeout(function() {
         document.getElementById("counter").style.color = color;
         document.getElementById("counter").innerHTML = text;
@@ -92,7 +94,10 @@ function gameStart(timeBetweenBeats, futureTime) {
       document.getElementById("explain").style.display = "block";
       document.getElementById("keep").style.display = "none";
       this.removeEventListener('click', handler);
-      const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3) * (1000 / timeBetweenBeats);
+      for (let i = 0; i < maximumNumberOfClicks; i++) {
+        averageScore += scoresArray[i];
+      }
+      averageScore = (averageScore / maximumNumberOfClicks) * (1000 / timeBetweenBeats);
       let finalScore = (timeBetweenBeats - averageScore);
       if (finalScore < 0) {
         finalScore = 0;
