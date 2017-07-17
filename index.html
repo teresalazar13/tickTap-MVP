@@ -39,12 +39,14 @@
         <div id="home" class="app__home">
           <p class="app__title">tickTap</p>
           <p class="app__subtitle">DEMO VERSION</p>
-          <div class="losang" id="play"><span class="losang__text">PLAY</span></div>
+          <div class="losang" id="play">
+            <span class="losang__text" id="play-text">PLAY</span>
+          </div>
         </div>
 
-        <div id="song-menu" style="display:none">
-          <h3>Please select a song</h3>
-          <ul>
+        <div id="song-menu" class="app__home" style="display:none">
+          <h3 class="song-menu-title">Please select a song</h3>
+          <ul class="song-list">
             <li><button class="song-select" value="500">Practise</button></li>
             <li><button class="song-select" value="706">Rise And Shine</button></li>
             <!--<li><button class="song-select" value="631.58">Sweet Passage</button></li>-->
@@ -83,23 +85,28 @@
           </audio>
 
           <p id="current-song"></p>
-          <p id="explain">Listen and touch the screen according to the rhythm</p>
-          <p id="keep" style="display:none">Keep the rhythm</p>
-          <div type="button" name="button" id="touch">
-            <p id="counter"></p>
+          <p class="game-explain" id="explain">
+            <span class="game-explain-bold">Listen</span> and <span class="game-explain-bold">touch</span> the screen <br>according to the rhythm
+          </p>
+          <p class="game-explain" id="keep" style="display:none">Keep <br>the rhythm<br></p>
+          <div type="button" name="button" id="touch" class="losang">
+            <span class="losang__text" id="counter"></span>
           </div>
           <p id="level-of-success"></p>
           <p id="array-of-scores"></p>
         </div>
 
-        <div id="calculating-results" style="display:none">
+        <div class="song-menu-title" id="calculating-results" style="display:none">
           <p>Calculating results...</p>
         </div>
 
         <div id="results" style="display:none">
-          <p>Score</p>
-          <p id="score"></p>
-          <button id="restart">Restart demo</button>
+          <p class="game-explain"><span class="game-explain-bold">Great</span><br>You scored</p>
+          <p class="game-explain" id="keep" style="display:none">Keep <br>the rhythm<br></p>
+          <div type="button" name="button" class="losang-score">
+            <span class="losang__text" id="score"></span>
+          </div>
+          <button id="restart">Restart Demo</button>
         </div>
       </div>
 

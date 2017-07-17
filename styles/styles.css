@@ -42,16 +42,9 @@ header {
   margin-right: auto;
 }
 
-#touch {
-  width: 40px;
-  height: 40px;
-  background-color: green;
-}
-
 .main {
-  background: #00FFA6;  
+  background: #00FFA6;
   width: 100%;
-  
 }
 
 .phone {
@@ -74,7 +67,7 @@ header {
   width: calc(100% + 46px);
 }
 
-@media (max-width:450px) { 
+@media (max-width:450px) {
   .main{
     padding: 0;
   }
@@ -94,7 +87,6 @@ header {
   width: 100%;
   height: 100%;
   background-color: black;
-  
 }
 
 .app__title{
@@ -117,10 +109,115 @@ header {
   font-size: 0.5em;
 }
 
-#play {
-  background-color: #00FFA6;
+.losang {
+  background: #00FFA6;
   outline: 0;
   border: 0;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 33%;
+  transform: rotate(-45deg);
+}
+
+.losang__text {
+  transform: rotate(45deg);
+  color: white;
+  font-size: 1.5em;
+  font-weight: 500;
+  padding-left: 3px;
+  letter-spacing: 0.15em;
+}
+
+.losang__text:hover {
+  color: black;
+}
+
+#play-text:hover {
+  cursor: pointer;
+}
+
+.song-menu-title {
+  padding-top: 80px;
+  color: white;
+}
+
+.song-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.song-select {
+  color: white;
+  font-size: 0.7em;
+  padding-top: 3%;
+  border: none;
+  background: none!important;
+}
+
+.song-select:hover {
+  color: #00FFA6;
+  cursor: pointer;
+}
+
+.game-explain {
+  font-size: 0.8em;
+  padding-top: 80px;
+}
+
+.game-explain-bold {
+  font-weight: 600;
+}
+
+#touch {
+  margin-top: 33%;
+  background: black;
+}
+
+#counter {
+  font-size: 2.5em;
+}
+
+#calculating-results {
+  color: black;
+}
+
+.losang-score {
+  background: black;
+  outline: 0;
+  border: 0;
+  width: 135px;
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 28%;
+  margin-top: 25%;
+  transform: rotate(-45deg);
+  border: 2px;
+  border-color: #00FFA6;
+}
+
+#score {
+  font-size: 2.5em;
+  color: #00FFA6;
+}
+
+#restart {
+  color: black;
+  margin-top: 50%;
+  border: none;
+  outline: 0;
+  background: none!important;
+}
+
+#restart:hover {
+  color: #00FFA6;
+  cursor: pointer;
 }
 
 .cta-form {
@@ -139,10 +236,10 @@ header {
   background: transparent;
   border-bottom: 2px solid #00FFA6;
   width: 350px;
-  
+
 }
 
-@media (max-width:450px) { 
+@media (max-width:450px) {
   .cta-form__input {
     width: 90%;
   }
@@ -170,6 +267,7 @@ header {
 
 .cta-form__submit:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 .footer__text{

@@ -15,12 +15,12 @@ window.onload = function() {
 
 function play(event) {
   document.getElementById("home").style.display = "none";
-  document.getElementById("song-menu").style.display = "initial";
+  document.getElementById("song-menu").style.display = "block";
 }
 
 function select(event) {
   document.getElementById("song-menu").style.display = "none";
-  document.getElementById("game").style.display = "initial";
+  document.getElementById("game").style.display = "block";
   document.getElementById(event.target.innerHTML.replace(/ /g,'')).play();
   songStart(parseFloat(event.target.value), event.target.innerHTML.replace(/ /g,''));
 }
@@ -52,7 +52,7 @@ function songStart(timeBetweenBeats, song) {
       clearInterval(interval);
       counter.innerHTML = "";
       document.getElementById("explain").style.display = "none";
-      document.getElementById("keep").style.display = "initial";
+      document.getElementById("keep").style.display = "block";
       document.getElementById(song).pause();
       document.getElementById(song).currentTime = 0;
       gameStart(timeBetweenBeats, futureTime);
@@ -76,6 +76,7 @@ function gameStart(timeBetweenBeats, futureTime) {
     }
 
     else {
+      document.getElementById("song-menu").style.backgroundColor = "black";
       this.removeEventListener('click', handler);
       const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3) * (1000 / timeBetweenBeats);
       let finalScore = (timeBetweenBeats - averageScore);
@@ -119,11 +120,11 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
 function showResults(finalScore) {
   document.getElementById("level-of-success").innerHTML = "";
   document.getElementById("game").style.display = "none";
-  document.getElementById("calculating-results").style.display = "initial";
+  document.getElementById("calculating-results").style.display = "block";
 
   setTimeout(function() {
     document.getElementById("calculating-results").style.display = "none";
-    document.getElementById("results").style.display = "initial";
+    document.getElementById("results").style.display = "block";
     document.getElementById("score").innerHTML = finalScore;
   }, 2000);
 }
