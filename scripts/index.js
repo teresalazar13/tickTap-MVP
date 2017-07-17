@@ -41,9 +41,7 @@ function songStart(timeBetweenBeats, song) {
     touch.style.transitionDuration = "0s";
     touch.style.transform = "rotate(-45deg) scale(1)";
     if (i >= 1) {
-      //touch.style.visibility = "hidden";
       setTimeout(function() {
-        //touch.style.visibility = "visible";
         touch.style.transform = "rotate(-45deg) scale(1.2)";
         touch.style.transitionDuration = duration;
       }, 100);
@@ -71,19 +69,21 @@ function gameStart(timeBetweenBeats, futureTime) {
   let numberOfClicks = 0;
   let scoresArray = [];
   let text = "";
+  let color = "";
   const duration = (timeBetweenBeats/1000).toString() + 's';
+  document.getElementById("counter").style.fontSize = "1em";
 
   touch.addEventListener("click", function handler() {
-    [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
+    [numberOfClicks, futureTime, scoresArray, text, color] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
     touch.style.transitionDuration = "0s";
     touch.style.transform = "rotate(-45deg) scale(1)";
 
     if (numberOfClicks != 12) {
       setTimeout(function() {
-        document.getElementById("level-of-success").innerHTML = text;
+        document.getElementById("counter").style.color = color;
+        document.getElementById("counter").innerHTML = text;
         touch.style.transform = "rotate(-45deg) scale(1.2)";
         touch.style.transitionDuration = duration;
-
       }, 100);
     }
 
@@ -111,31 +111,39 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   const duration = (timeBetweenBeats/1000).toString() + 's';
 
   let text = "";
+  let color = "";
 
   if (score < tempTime) {
     text = "Perfect";
+    color = "#00FFA6";
   }
   else if (score >= tempTime && score < (tempTime * 2)) {
     text = "Great";
+    color = "#00cc85";
   }
   else if (score >= (tempTime * 2) && score < (tempTime * 4)) {
     text = "Good";
+    color = "#009963";
   }
   else if (score >= (tempTime * 4) && score < (tempTime * 6)) {
     text = "Okay"
+    color = "#006642";
   }
   else {
     text = "Bad";
+    color = "#003321";
   }
 
   numberOfClicks += 1;
   scoresArray.push(score);
   futureTime = new Date().getTime() + timeBetweenBeats;
-  return [numberOfClicks, futureTime, scoresArray, text];
+  return [numberOfClicks, futureTime, scoresArray, text, color];
 }
 
 function showResults(finalScore) {
-  document.getElementById("level-of-success").innerHTML = "";
+  document.getElementById("counter").innerHTML = "";
+  document.getElementById("counter").style.fontSize = "2.5em";
+  document.getElementById("counter").style.color = "white";
   document.getElementById("game").style.display = "none";
   document.getElementById("calculating-results").style.display = "block";
 
