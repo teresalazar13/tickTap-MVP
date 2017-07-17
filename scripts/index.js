@@ -34,12 +34,17 @@ function songStart(timeBetweenBeats, song) {
   let i = 12;
   const touch = document.getElementById("touch");
   const counter = document.getElementById("counter");
+  const duration = (timeBetweenBeats/1000).toString() + 's';
 
   let interval = setInterval(function(){
+    touch.style.transitionDuration = "0s";
+    touch.style.transform = "rotate(-45deg) scale(1)";
     if (i >= 1) {
-      touch.style.visibility = "hidden";
+      //touch.style.visibility = "hidden";
       setTimeout(function() {
-        touch.style.visibility = "visible";
+        //touch.style.visibility = "visible";
+        touch.style.transform = "rotate(-45deg) scale(1.2)";
+        touch.style.transitionDuration = duration;
       }, 100);
 
       if(i < 4) {
@@ -65,18 +70,26 @@ function gameStart(timeBetweenBeats, futureTime) {
   let numberOfClicks = 0;
   let scoresArray = [];
   let text = "";
+  const duration = (timeBetweenBeats/1000).toString() + 's';
 
   touch.addEventListener("click", function handler() {
     [numberOfClicks, futureTime, scoresArray, text] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
+    touch.style.transitionDuration = "0s";
+    touch.style.transform = "rotate(-45deg) scale(1)";
 
     if (numberOfClicks != 12) {
       setTimeout(function() {
         document.getElementById("level-of-success").innerHTML = text;
+        touch.style.transform = "rotate(-45deg) scale(1.2)";
+        touch.style.transitionDuration = duration;
+
       }, 100);
     }
 
     else {
       document.getElementById("song-menu").style.backgroundColor = "black";
+      document.getElementById("explain").style.display = "block";
+      document.getElementById("keep").style.display = "none";
       this.removeEventListener('click', handler);
       const averageScore = Math.round((scoresArray[0] + scoresArray[1] + scoresArray[2]) / 3) * (1000 / timeBetweenBeats);
       let finalScore = (timeBetweenBeats - averageScore);
@@ -93,6 +106,9 @@ function gameStart(timeBetweenBeats, futureTime) {
 function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) {
   const score = Math.abs(futureTime - new Date().getTime());
   const tempTime = timeBetweenBeats / 20;
+  const touch = document.getElementById("touch");
+  const duration = (timeBetweenBeats/1000).toString() + 's';
+
   let text = "";
 
   if (score < tempTime) {
