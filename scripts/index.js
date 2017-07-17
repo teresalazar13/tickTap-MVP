@@ -22,6 +22,7 @@ function select(event) {
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "block";
   document.getElementById(event.target.innerHTML.replace(/ /g,'')).play();
+  document.getElementsByClassName("phone")[0].style.backgroundColor = "white";
   songStart(parseFloat(event.target.value), event.target.innerHTML.replace(/ /g,''));
 }
 
@@ -142,5 +143,6 @@ function showResults(finalScore) {
     document.getElementById("calculating-results").style.display = "none";
     document.getElementById("results").style.display = "block";
     document.getElementById("score").innerHTML = finalScore;
+    document.getElementsByClassName("phone")[0].style.backgroundColor = "black";
   }, 2000);
 }
