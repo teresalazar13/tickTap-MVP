@@ -27,7 +27,7 @@ function select(event) {
 
 function restartDemo(event) {
   document.getElementById("results").style.display = "none";
-  document.getElementById("home").style.display = "initial";
+  document.getElementById("home").style.display = "block";
 }
 
 function songStart(timeBetweenBeats, song) {
