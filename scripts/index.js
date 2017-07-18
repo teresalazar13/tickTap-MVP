@@ -76,7 +76,8 @@ function gameStart(timeBetweenBeats, futureTime) {
   const maximumNumberOfClicks = 12;
   let averageScore = 0;
   let numberOfClicks = 0;
-  let scoresArray = [];
+  // Number of Bads, Goods, Okays, Greats, Perfects
+  let scoresArray = [0, 0, 0, 0, 0];
   let text = "";
   let color = "";
   document.getElementById("counter").style.fontSize = "1em";
@@ -105,15 +106,12 @@ function gameStart(timeBetweenBeats, futureTime) {
       document.getElementById("explain").style.display = "block";
       document.getElementById("keep").style.display = "none";
       this.removeEventListener('click', handler);
-      for (let i = 0; i < maximumNumberOfClicks; i++) {
-        averageScore += scoresArray[i];
+      let finalScore = 0;
+      for (let i = 1; i < scoresArray.length; i++) {
+        finalScore += scoresArray[i] * i;
       }
-      averageScore = (averageScore / maximumNumberOfClicks) * (1000 / timeBetweenBeats);
-      let finalScore = (timeBetweenBeats - averageScore);
-      if (finalScore < 0) {
-        finalScore = 0;
-      }
-      showResults(parseInt(finalScore));
+      finalScore = (100 * finalScore) / 48;
+      showResults(scoresArray, parseInt(finalScore));
       return;
     }
 
@@ -128,22 +126,27 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
 
   let text = "";
   let color = "";
+  let index = 0;
 
   if (score < tempTime) {
     text = "Perfect";
     color = "#00FFA6";
+    index = 4;
   }
   else if (score >= tempTime && score < (tempTime * 2)) {
     text = "Great";
     color = "#fff";
+    index = 3;
   }
   else if (score >= (tempTime * 2) && score < (tempTime * 4)) {
     text = "Good";
     color = "#aaa";
+    index = 2;
   }
   else if (score >= (tempTime * 4) && score < (tempTime * 6)) {
     text = "Okay"
     color = "#999";
+    index = 1;
   }
   else {
     text = "Bad";
@@ -151,12 +154,12 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   }
 
   numberOfClicks += 1;
-  scoresArray.push(score);
+  scoresArray[index] = scoresArray[index] + 1;
   futureTime = new Date().getTime() + timeBetweenBeats;
   return [numberOfClicks, futureTime, scoresArray, text, color];
 }
 
-function showResults(finalScore) {
+function showResults(scoresArray, finalScore) {
   document.getElementById("counter").innerHTML = "";
   document.getElementById("counter").style.fontSize = "2.5em";
   document.getElementById("counter").style.color = "white";
@@ -166,7 +169,9 @@ function showResults(finalScore) {
   setTimeout(function() {
     document.getElementById("calculating-results").style.display = "none";
     document.getElementById("results").style.display = "flex";
-    document.getElementById("score").innerHTML = finalScore;
+    document.getElementById("score").innerHTML = finalScore + "%";
+    document.getElementById("detailed-results").innerHTML = "Number of Perfects " + scoresArray[4] + "<br>Number of Greats " +
+    scoresArray[3] + "<br>Number of Goods " + scoresArray[2] + "<br>Number of Okays " + scoresArray[1] + "<br>Number of Bads " + scoresArray[0];
     document.getElementsByClassName("phone")[0].style.backgroundColor = "black";
   }, 2000);
 }
