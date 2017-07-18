@@ -174,8 +174,8 @@ function showResults(scoresArray, finalScore) {
     document.getElementById("calculating-results").style.display = "none";
     document.getElementById("results").style.display = "flex";
     document.getElementById("score").innerHTML = finalScore + "%";
-    document.getElementById("detailed-results").innerHTML = "Number of Perfects " + scoresArray[4] + "<br>Number of Greats " +
-    scoresArray[3] + "<br>Number of Goods " + scoresArray[2] + "<br>Number of Okays " + scoresArray[1] + "<br>Number of Bads " + scoresArray[0];
+    document.getElementById("detailed-results").innerHTML = scoresArray[4] + " Perfects<br>" + scoresArray[3] +
+    " Greats<br>" + scoresArray[2] + " Goods<br>" + scoresArray[1] + " Okays<br>" + scoresArray[0] + " Bads";
     document.getElementsByClassName("phone")[0].style.backgroundColor = "black";
   }, 2000);
 }

@@ -247,7 +247,7 @@ header {
 
 #restart {
   color: white;
-  margin-top: 45%;
+  margin-top: 5%;
   border: none;
   outline: 0;
   background: none!important;
@@ -328,4 +328,14 @@ header {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+#calculating-results {
+  margin-left: 15%;
+}
+
+#detailed-results {
+  color: white;
+  font-size: 0.8em;
+  margin-top: 15%;
 }
