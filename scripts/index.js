@@ -19,11 +19,15 @@ function play(event) {
 }
 
 function select(event) {
+  const songName = event.target.innerHTML.replace(/ /g,'');
+  const timeBetweenBeats = event.target.value;
   document.getElementById("song-menu").style.display = "none";
   document.getElementById("game").style.display = "flex";
-  document.getElementById(event.target.innerHTML.replace(/ /g,'')).play();
   document.getElementsByClassName("phone")[0].style.backgroundColor = "white";
-  songStart(parseFloat(event.target.value), event.target.innerHTML.replace(/ /g,''));
+  setTimeout(function() {
+    document.getElementById(songName).play();
+    songStart(parseFloat(timeBetweenBeats), songName);
+  }, 750);
 }
 
 function restartDemo(event) {
@@ -32,7 +36,7 @@ function restartDemo(event) {
 }
 
 function songStart(timeBetweenBeats, song) {
-  let i = 12;
+  let i = 11;
   const touch = document.getElementById("touch");
   const counter = document.getElementById("counter");
   const duration = (timeBetweenBeats/1000).toString() + 's';
@@ -42,7 +46,7 @@ function songStart(timeBetweenBeats, song) {
     touch.style.transform = "rotate(-45deg) scale(1.4)";
     touch.style.boxShadow = "0 0 40px -4px rgba(0,0,0,0.3);";
     touch.style.backgroundColor = "#00FFA6";
-    if (i >= 1) {
+    if (i > 0) {
       setTimeout(function() {
         touch.style.transform = "rotate(-45deg) scale(1)";
         touch.style.backgroundColor = "black";
@@ -51,12 +55,11 @@ function songStart(timeBetweenBeats, song) {
         touch.style.transitionTimingFunction = "ease";
       }, 100);
 
-      if(i < 4) {
+      if(i <= 4) {
         counter.innerHTML = i;
       }
     }
-    i -= 1;
-    if (i === -1) {
+    else {
       let futureTime = new Date().getTime();
       clearInterval(interval);
       counter.innerHTML = "";
@@ -66,6 +69,7 @@ function songStart(timeBetweenBeats, song) {
       document.getElementById(song).currentTime = 0;
       gameStart(timeBetweenBeats, futureTime);
     }
+    i -= 1;
   }, timeBetweenBeats);
 }
 
