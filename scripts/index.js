@@ -15,12 +15,12 @@ window.onload = function() {
 
 function play(event) {
   document.getElementById("home").style.display = "none";
-  document.getElementById("song-menu").style.display = "block";
+  document.getElementById("song-menu").style.display = "flex";
 }
 
 function select(event) {
   document.getElementById("song-menu").style.display = "none";
-  document.getElementById("game").style.display = "block";
+  document.getElementById("game").style.display = "flex";
   document.getElementById(event.target.innerHTML.replace(/ /g,'')).play();
   document.getElementsByClassName("phone")[0].style.backgroundColor = "white";
   songStart(parseFloat(event.target.value), event.target.innerHTML.replace(/ /g,''));
@@ -28,7 +28,7 @@ function select(event) {
 
 function restartDemo(event) {
   document.getElementById("results").style.display = "none";
-  document.getElementById("home").style.display = "block";
+  document.getElementById("home").style.display = "flex";
 }
 
 function songStart(timeBetweenBeats, song) {
@@ -39,11 +39,16 @@ function songStart(timeBetweenBeats, song) {
 
   let interval = setInterval(function(){
     touch.style.transitionDuration = "0s";
-    touch.style.transform = "rotate(-45deg) scale(1)";
+    touch.style.transform = "rotate(-45deg) scale(1.4)";
+    touch.style.boxShadow = "0 0 40px -4px rgba(0,0,0,0.3);";
+    touch.style.backgroundColor = "#00FFA6";
     if (i >= 1) {
       setTimeout(function() {
-        touch.style.transform = "rotate(-45deg) scale(1.2)";
+        touch.style.transform = "rotate(-45deg) scale(1)";
+        touch.style.backgroundColor = "black";
+        touch.style.boxShadow = "0 0 20px 0px rgba(0,0,0,0.3);";
         touch.style.transitionDuration = duration;
+        touch.style.transitionTimingFunction = "ease";
       }, 100);
 
       if(i < 4) {
@@ -56,7 +61,7 @@ function songStart(timeBetweenBeats, song) {
       clearInterval(interval);
       counter.innerHTML = "";
       document.getElementById("explain").style.display = "none";
-      document.getElementById("keep").style.display = "block";
+      document.getElementById("keep").style.display = "flex";
       document.getElementById(song).pause();
       document.getElementById(song).currentTime = 0;
       gameStart(timeBetweenBeats, futureTime);
@@ -66,6 +71,7 @@ function songStart(timeBetweenBeats, song) {
 
 function gameStart(timeBetweenBeats, futureTime) {
   const touch = document.getElementById("touch");
+  const screen = document.getElementById("game");
   const duration = (timeBetweenBeats/1000).toString() + 's';
   const maximumNumberOfClicks = 12;
   let averageScore = 0;
@@ -75,17 +81,22 @@ function gameStart(timeBetweenBeats, futureTime) {
   let color = "";
   document.getElementById("counter").style.fontSize = "1em";
 
-  touch.addEventListener("click", function handler() {
+  screen.addEventListener("click", function handler() {
     [numberOfClicks, futureTime, scoresArray, text, color] = rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray);
     touch.style.transitionDuration = "0s";
-    touch.style.transform = "rotate(-45deg) scale(1)";
+    touch.style.transform = "rotate(-45deg) scale(1.4)";
+    touch.style.boxShadow = "0 0 40px -4px rgba(0,0,0,0.3);";
+    touch.style.backgroundColor = "#00FFA6";
 
     if (numberOfClicks != maximumNumberOfClicks) {
       setTimeout(function() {
         document.getElementById("counter").style.color = color;
         document.getElementById("counter").innerHTML = text;
-        touch.style.transform = "rotate(-45deg) scale(1.2)";
+        touch.style.transform = "rotate(-45deg) scale(1)";
+        touch.style.backgroundColor = "black";
+        touch.style.boxShadow = "0 0 20px 0px rgba(0,0,0,0.3);";
         touch.style.transitionDuration = duration;
+        touch.style.transitionTimingFunction = "ease";
       }, 100);
     }
 
@@ -124,19 +135,19 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   }
   else if (score >= tempTime && score < (tempTime * 2)) {
     text = "Great";
-    color = "#00cc85";
+    color = "#fff";
   }
   else if (score >= (tempTime * 2) && score < (tempTime * 4)) {
     text = "Good";
-    color = "#009963";
+    color = "#aaa";
   }
   else if (score >= (tempTime * 4) && score < (tempTime * 6)) {
     text = "Okay"
-    color = "#006642";
+    color = "#999";
   }
   else {
     text = "Bad";
-    color = "#003321";
+    color = "#333";
   }
 
   numberOfClicks += 1;
@@ -150,11 +161,11 @@ function showResults(finalScore) {
   document.getElementById("counter").style.fontSize = "2.5em";
   document.getElementById("counter").style.color = "white";
   document.getElementById("game").style.display = "none";
-  document.getElementById("calculating-results").style.display = "block";
+  document.getElementById("calculating-results").style.display = "flex";
 
   setTimeout(function() {
     document.getElementById("calculating-results").style.display = "none";
-    document.getElementById("results").style.display = "block";
+    document.getElementById("results").style.display = "flex";
     document.getElementById("score").innerHTML = finalScore;
     document.getElementsByClassName("phone")[0].style.backgroundColor = "black";
   }, 2000);

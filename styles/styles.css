@@ -83,10 +83,35 @@ header {
 }
 
 
-.app__home {
+.app__screen {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__screen--black{
   background-color: black;
+}
+
+.app__screen--game{
+  animation: background-black-to-white 0.2s ease;
+}
+
+@keyframes translate-y-animation {
+    from {transform: translateY(-20px); opacity: 0}
+    to {transform: translateY(0px)); opacity: 1}
+}
+
+@keyframes scale-zero-to-one {
+    from {transform: scale(0) rotate(0deg);}
+    to {transform: scale(1) rotate(45deg);}
+}
+
+@keyframes background-black-to-white {
+    from {background-color: black;}
+    to {background-color: white;}
 }
 
 .app__title{
@@ -99,7 +124,6 @@ header {
 .app__subtitle{
   font-size: 0.8em;
   letter-spacing: 0.2em;
-  margin-bottom: 60px;
   color: #00FFA6;
 }
 
@@ -110,7 +134,9 @@ header {
 }
 
 .losang {
+  cursor: pointer;
   background: #00FFA6;
+  transition: 0.2s ease;
   outline: 0;
   border: 0;
   margin: 0;
@@ -119,8 +145,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 33%;
   transform: rotate(-45deg);
+  box-shadow: 0 0 40px -4px rgba(0,0,0,0.3);
 }
 
 .losang__text {
@@ -128,13 +154,41 @@ header {
   color: white;
   font-size: 1.5em;
   font-weight: 500;
+  text-transform: uppercase;
   padding-left: 3px;
+  letter-spacing: 0.05em;
+}
+
+.losang__text--feedback{
+  font-size: 1.1em;
   letter-spacing: 0.15em;
 }
 
-#play-text:hover {
-  cursor: pointer;
-  color: black;
+.losang--start{
+  margin-top: 100px;
+  border: solid 2px #00FFA6;
+}
+
+.losang--start:hover{
+  background-color: black;
+  transform: rotate(-45deg) scale(1.3);
+}
+
+.losang--start:hover .losang__text{
+  color: #00FFA6;
+}
+
+.losang--touch{
+  animation: scale-zero-to-one 0.5s ease;
+}
+
+.losang--score{
+  cursor: none;
+  width: 120px;
+  height: 120px;
+  margin-top: 70px;
+  background-color: black;
+  border: solid 2px #00FFA6;
 }
 
 .song-menu-title {
@@ -162,8 +216,9 @@ header {
 }
 
 .game-explain {
-  font-size: 0.8em;
-  padding-top: 80px;
+  font-size: 1em;
+  padding-top: 60px;
+  animation: translate-y-animation 0.8s ease;
 }
 
 .game-explain-bold {
@@ -183,21 +238,6 @@ header {
   color: black;
 }
 
-.losang-score {
-  background: black;
-  outline: 0;
-  border: 0;
-  width: 135px;
-  height: 135px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 28%;
-  margin-top: 25%;
-  transform: rotate(-45deg);
-  border: 2px;
-  border-color: #00FFA6;
-}
 
 #score {
   font-size: 2.5em;
