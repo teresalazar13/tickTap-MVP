@@ -42,17 +42,19 @@
           <div class="losang losang--start" id="play">
             <span class="losang__text noselect" id="play-text">PLAY</span>
           </div>
+          <p class="app__disclamer">NOTE: Some aspects of this demo could be changed on the release version.</p>
         </div>
 
-        <div id="song-menu" class="app__screen app__screen--black" style="display:none">
-          <p class="song-menu-title">Please select a song</p>
+        <div id="song-menu" class="app__screen song-menu" style="display:none">
+          <p class="song-menu__header">tickTap</p>
+          <p class="song-menu__header song-menu__header--title">SELECT A SONG</p>
           <ul class="song-list">
-            <li><button class="song-select" value="500">Practise</button></li>
-            <li><button class="song-select" value="706">Rise And Shine</button></li>
-            <!--<li><button class="song-select" value="631.58">Sweet Passage</button></li>-->
-            <li><button class="song-select" value="706">Slow Burn</button></li>
-            <li><button class="song-select" value="500">Hustle</button></li>
+            <li class="song-list__item"><button class="song-select" value="500">Practise</button><img class="song-select__icon" src="resources/play.svg"></li>
+            <li class="song-list__item"><button class="song-select" value="706">Rise And Shine</button><img class="song-select__icon" src="resources/play.svg"></li>
+            <li class="song-list__item"><button class="song-select" value="706">Slow Burn</button><img class="song-select__icon" src="resources/play.svg"></li>
+            <li class="song-list__item"><button class="song-select" value="500">Hustle</button><img class="song-select__icon" src="resources/play.svg"></li>
           </ul>
+          <p class="app__disclamer">(MORE SONGS TO COME)</p>
         </div>
 
         <div id="game" class="app__screen app__screen--game" style="display:none">
@@ -94,8 +96,7 @@
           </div>
         </div>
 
-        <div class="song-menu-title" id="calculating-results" style="display:none">
-          <p>Calculating results...</p>
+        <div class="app__screen app__screen--colorful" id="calculating-results" style="display:none">
         </div>
 
         <div id="results" class="app__screen" style="display:none">
@@ -103,8 +104,8 @@
           <div type="button" name="button" class="losang losang--score">
             <span class="losang__text" id="score"></span>
           </div>
-          <p id="detailed-results"></p>
-          <button id="restart">Restart Demo</button>
+          <p id="detailed-results" class="results__detailed"></p>
+          <button id="restart" class="results__restart"><img src="resources/restart.svg"/>Restart Demo</button>
         </div>
       </div>
 

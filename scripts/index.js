@@ -106,7 +106,7 @@ function gameStart(timeBetweenBeats, futureTime) {
     }
 
     else {
-      document.getElementById("song-menu").style.backgroundColor = "black";
+      document.getElementById("song-menu").style.backgroundColor = "white";
       document.getElementById("explain").style.display = "block";
       document.getElementById("keep").style.display = "none";
       this.removeEventListener('click', handler);
