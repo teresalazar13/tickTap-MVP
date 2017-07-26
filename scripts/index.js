@@ -132,26 +132,31 @@ function rhythmClick(timeBetweenBeats, numberOfClicks, futureTime, scoresArray) 
   let color = "";
   let index = 0;
 
-  if (score < tempTime) {
+  // 90% - 100%
+  if (score <= tempTime) {
     text = "Perfect";
     color = "#00FFA6";
     index = 4;
   }
-  else if (score >= tempTime && score < (tempTime * 2)) {
+  // 80% - 89%
+  else if (score > tempTime && score < (tempTime * 2)) {
     text = "Great";
     color = "#fff";
     index = 3;
   }
-  else if (score >= (tempTime * 2) && score < (tempTime * 4)) {
+  // 70% - 79%
+  else if (score >= (tempTime * 2) && score < (tempTime * 3)) {
     text = "Good";
     color = "#aaa";
     index = 2;
   }
-  else if (score >= (tempTime * 4) && score < (tempTime * 6)) {
+  // 50% - 69%
+  else if (score >= (tempTime * 3) && score < (tempTime * 5)) {
     text = "Okay"
     color = "#999";
     index = 1;
   }
+  // 0% - 49%
   else {
     text = "Bad";
     color = "#333";
@@ -174,6 +179,20 @@ function showResults(scoresArray, finalScore) {
     document.getElementById("calculating-results").style.display = "none";
     document.getElementById("results").style.display = "flex";
     document.getElementById("score").innerHTML = finalScore + "%";
+    let finalScoreSuccess = "Bad";
+    if (finalScore >= 50 && finalScore <= 69) {
+      finalScoreSuccess = "Okay";
+    }
+    else if (finalScore >= 70 && finalScore <= 79) {
+      finalScoreSuccess = "Good";
+    }
+    else if (finalScore >= 80 && finalScore <= 89) {
+      finalScoreSuccess = "Great";
+    }
+    else if (finalScore >= 90) {
+      finalScoreSuccess = "Perfect";
+    }
+    document.getElementById("game-success").innerHTML = finalScoreSuccess;
     document.getElementById("detailed-results").innerHTML = scoresArray[4] + " Perfects<br>" + scoresArray[3] +
     " Greats<br>" + scoresArray[2] + " Goods<br>" + scoresArray[1] + " Okays<br>" + scoresArray[0] + " Bads";
     document.getElementsByClassName("phone")[0].style.backgroundColor = "black";
